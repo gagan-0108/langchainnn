@@ -1,0 +1,9 @@
+# Ignore of virtual environment
+venv/
+
+# Ignoring my api keys
+.env
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
