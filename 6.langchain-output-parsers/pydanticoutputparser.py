@@ -25,8 +25,11 @@ template = PromptTemplate(
     partial_variables={ "formmat_intruction" : parser.get_format_instructions()}
     )
 
-prompt = template.format({'place':'india'})
-result = prompt.invoke () 
-finalResult = parser.parse(result.content)
+# prompt = template.format({'place':'india'})
+# result = prompt.invoke () 
+# finalResult = parser.parse(result.content)
 
-print ( finalResult)
+chain = template | model | parser
+final_result = chain.invoke({'place':'assam'})
+
+print ( final_result)
