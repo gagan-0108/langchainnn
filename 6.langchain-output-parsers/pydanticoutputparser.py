@@ -28,7 +28,7 @@ template = PromptTemplate(
 # prompt = template.format({'country':'india'})
 # result = prompt.invoke () 
 # finalResult = parser.parse(result.content)
-
+#using chain 
 chain = template | model | parser
 final_result = chain.invoke({'country':'assam'})
 
