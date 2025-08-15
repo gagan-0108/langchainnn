@@ -1,8 +1,8 @@
-from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace , HuggingFaceEndpoint
+from dotenv import load_dotenv
+from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
-from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
@@ -22,14 +22,14 @@ parser = PydanticOutputParser(pydantic_object=Person)
 template = PromptTemplate(
     template= "Generate a sotry of peson with a name age city in 5 lines of {country} person\n {format_intruction}",
     input_variables= ['country'],
-    partial_variables={ "formmat_intruction" : parser.get_format_instructions()}
+    partial_variables={ "format_intruction" : parser.get_format_instructions()}
     )
 
-# prompt = template.format({'place':'india'})
+# prompt = template.format({'country':'india'})
 # result = prompt.invoke () 
 # finalResult = parser.parse(result.content)
 
 chain = template | model | parser
-final_result = chain.invoke({'place':'assam'})
+final_result = chain.invoke({'country':'assam'})
 
 print ( final_result)
