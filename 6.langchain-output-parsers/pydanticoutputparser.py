@@ -32,4 +32,4 @@ template = PromptTemplate(
 chain = template | model | parser
 final_result = chain.invoke({'country':'assam'})
 
-print ( final_result)
+print ( final_result) 
