@@ -18,12 +18,12 @@ def word_count(text):
     return len(text.split())
 
 joke_generate = RunnableSequence(prompt, model , parser)
-paralle_chain = RunnableSequence({
+parallel_chain = RunnableParallel({
     'joke': RunnablePassthrough(),
     'word_Count': RunnableLambda( word_count ) 
 })
 
-final_chain = RunnableSequence(joke_generate, paralle_chain)
+final_chain = RunnableSequence(joke_generate, parallel_chain)
 # joke_generate = RunnableSequence({
 #     'joke': RunnablePassthrough()
 #     'word_Count': RunnableLambda( lambda x: len(x.split())) 
