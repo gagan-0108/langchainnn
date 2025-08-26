@@ -30,4 +30,6 @@ final_chain = RunnableSequence(joke_generate, parallel_chain)
 # })
 
 result = final_chain.invoke( {'topic':'AI'})
-print( result )
+
+final_result = """ {} \n word count -> {} """.format ( result['joke'], result ['word_Count'])
+print(final_result)
