@@ -30,3 +30,5 @@ final_chain = RunnableSequence(joke, parallel_chain )
 result = final_chain.invoke ( {'topic':'gambling'})
 
 print( result ) 
+
+#! RunnablePassthrough() doesn't do anything it return the input that is given to it as it as
