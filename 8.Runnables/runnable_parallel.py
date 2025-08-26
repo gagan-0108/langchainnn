@@ -22,6 +22,9 @@ parallel_chain = RunnableParallel({
     'tweet': RunnableSequence(prompt1 , model , parser), 
     'linkedin': RunnableSequence*(prompt2, model , parser)
 })
+#! runnable parallel will execute tweet and linkedin at the same time and with the same invoke function
 
 result = parallel_chain.invoke({'topic':'AI'})
+#?  now the topic "AI" will act as input in both tweet and linkedin- inside the runnable parallels 
+
 print( result)
