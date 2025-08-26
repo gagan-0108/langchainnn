@@ -1,4 +1,4 @@
- from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough , RunnableParallel, RunnableSequence, RunnableLambda
@@ -9,3 +9,25 @@ load_dotenv(dotenv_path="/Users/gagan/Desktop/langchainnnn/.env")
 model = ChatGoogleGenerativeAI(model = "gemini-2.5-flash")
  
 parser = StrOutputParser();
+prompt= PromptTemplate(
+    template = 'generate a joke on the {topic}', 
+    input_variables = ['topic']
+)
+
+def word_count(text):
+    return len(text.split())
+
+joke_generate = RunnableSequence(prompt, model , parser)
+paralle_chain = RunnableSequence({
+    'joke': RunnablePassthrough(),
+    'word_Count': RunnableLambda( word_count ) 
+})
+
+final_chain = RunnableSequence(joke_generate, paralle_chain)
+# joke_generate = RunnableSequence({
+#     'joke': RunnablePassthrough()
+#     'word_Count': RunnableLambda( lambda x: len(x.split())) 
+# })
+
+result = final_chain.invoke( {'topic':'AI'})
+print( result )
