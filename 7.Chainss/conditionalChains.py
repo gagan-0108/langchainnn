@@ -7,7 +7,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import Field, BaseModel
 from typing import Literal
 
-load_dotenv(dotenv_path='/Users/gagan/Desktop/langchainnnn/.env')
+load_dotenv(dotenv_path='/Users/gagan/Desktop/L-GEN_AI/langchainnnn/.env')
 
 model = ChatGoogleGenerativeAI(model = 'gemini-2.5-flash')
 
