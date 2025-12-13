@@ -8,7 +8,7 @@ load_dotenv(dotenv_path="/Users/gagan/Desktop/langchainnnn/.env")
 
 prompt1 = PromptTemplate(
     template="write a joke about {topic}", 
-    input_variables=['topic']
+    input_variables=['topic'],
 )
 
 prompt2 = PromptTemplate(
